@@ -16,6 +16,7 @@ export default class App extends Component {
   }
 
   async componentDidMount() {
+    console.log('component did mount', this.props.token)
     const fetchedData = await request.get('http://localhost:3000/api/tasks').set('Authorization', this.props.token)
     const data = fetchedData.body
 
@@ -23,9 +24,8 @@ export default class App extends Component {
   }
 
   handleSubmit = async(e) => {
-    const newArrayOfTasks = this.state.tasks;
-
     e.preventDefault();
+    const newArrayOfTasks = this.state.tasks;
 
     const newTask = await request.post('http://localhost:3000/api/tasks', {
 
@@ -35,6 +35,7 @@ export default class App extends Component {
 
     }).set('Authorization', this.props.token)
 
+    
     newArrayOfTasks.push(newTask);
     this.setState({
       tasks: newArrayOfTasks
@@ -51,6 +52,7 @@ export default class App extends Component {
 
   handleClick = async(id) => {
     await request.put(`http://localhost:3000/api/tasks/${id}`).set('Authorization', this.props.token)
+    console.log(this.props.token)
     const fetchedData = await request.get('http://localhost:3000/api/tasks/').set('Authorization', this.props.token)
     const newArrayOfTasks = fetchedData.body
 
@@ -58,9 +60,10 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state)
+  
     return (
       <div>
+          To Do
           <NewTask handleNameChange={this.handleNameChange} handleUrgencyChange={this.handleUrgencyChange} handleSubmit={this.handleSubmit}/>
 
           <TaskDetail tasks={this.state.tasks} handleClick={this.handleClick}/>

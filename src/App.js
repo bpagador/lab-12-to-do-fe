@@ -15,6 +15,7 @@ export default class App extends Component {
   handleTokenChange = (userToken) => {
     this.setState({ token: userToken})
     localStorage.setItem('TOKEN', userToken)
+    console.log(userToken)
   }
 
   render() {

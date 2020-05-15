@@ -10,14 +10,14 @@ export default class LogIn extends Component {
     handleSubmit = async(e) => {
         e.preventDefault();
         let token = await request.post(`http://localhost:3000/auth/signin`, this.state)
-        localStorage.setItem('TOKEN', token.body)
+        localStorage.setItem('TOKEN', token.body.token)
         this.props.history.push('/todos')
     }
 
     render() {
         return (
             <div>
-                Sign In Page
+                Log In Page
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Email: 
