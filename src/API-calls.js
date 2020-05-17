@@ -1,6 +1,6 @@
 import request from 'superagent';
 
-const URL = 'http://localhost:3000'
+const URL = 'https://protected-woodland-24556.herokuapp.com/'
 
 const user = JSON.parse(localStorage.getItem('user'));
 

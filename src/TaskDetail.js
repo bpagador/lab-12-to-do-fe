@@ -7,7 +7,7 @@ export default class TaskDetail extends Component {
             <div>
                 <ul>
                     Task Detail
-                    {this.props.tasks.map(task => <div>{JSON.stringify(task)} </div>)}
+                    {this.props.tasks.map(task => <div>{JSON.stringify(task.name, task.urgency_level)}</div>)}
                 </ul>
             </div>
         )
